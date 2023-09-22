@@ -11,7 +11,7 @@ public class Main {
         Scanner scanner = new Scanner(System.in);
 
         // Prompt the user for input
-        System.out.print("Enter 4 numbers and a set of parentheses: ");
+        System.out.print("Enter 4 numbers followed by a set of parentheses.\nExample: '1234()': ");
 
         // Read a line of text entered by the user
         String input = scanner.nextLine();
@@ -24,7 +24,7 @@ public class Main {
         List<String> res = ParseExpression.evaluateExpressionResult(expressions);
 
         for (String expr : res)
-            System.out.println(expr);
+            System.out.println(expr + " = 10");
 
     }
 
