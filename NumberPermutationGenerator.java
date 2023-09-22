@@ -5,7 +5,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-public class PermutationGenerator {
+public class NumberPermutationGenerator {
 
     public static void main(String[] args) {
         String input = "1234()"; // Replace with your input
