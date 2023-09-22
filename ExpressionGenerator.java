@@ -3,26 +3,46 @@ package fourEqualsTen;
 import java.util.ArrayList;
 import java.util.List;
 
-import java.util.ArrayList;
-import java.util.List;
 
 public class ExpressionGenerator {
 
     public static void main(String[] args) {
         List<String> permutations = new ArrayList<>();
 
+        List<String> res = new ArrayList<>();
+
         permutations.add("1(32)4");
 
 
         for (String permutation : permutations) {
-            generateExpressions(permutation, 0, "", 0);
+            generateExpressions(permutation, 0, "", 0,res);
+        }
+
+        for (String r:res)
+        {
+            System.out.println(r);
         }
     }
 
-    public static void generateExpressions(String permutation, int index, String currentExpression, int operatorCount) {
+    public static void swap(StringBuilder chars, int i, int j) {
+        char temp = chars.charAt(i);
+        chars.setCharAt(i,chars.charAt(j));
+        chars.setCharAt(j,temp);
+    }
+
+    public static void generateExpressions(String permutation, int index, String currentExpression, int operatorCount, List<String> res) {
         if (index == permutation.length()) {
             if (isValidExpression(currentExpression, operatorCount)) {
-                System.out.println(currentExpression);
+                for(int i =0; i<currentExpression.length();i++)
+                {
+                    if (currentExpression.charAt(i) == ')' && i != currentExpression.length()-1)
+                    {
+                        StringBuilder s = new StringBuilder(currentExpression);
+                        swap(s,i,i-1);
+                        currentExpression=s.toString();
+                    }
+                }
+                res.add(currentExpression);
             }
             return;
         }
@@ -31,17 +51,17 @@ public class ExpressionGenerator {
 
         if (currentChar == '(' || currentChar == ')') {
             // If it's a parenthesis, include it as is
-            generateExpressions(permutation, index + 1, currentExpression + currentChar, operatorCount);
+            generateExpressions(permutation, index + 1, currentExpression + currentChar, operatorCount,res);
         } else {
             if (operatorCount < 3) {
                 // Try all four operators if not already reached the limit
-                generateExpressions(permutation, index + 1, currentExpression + currentChar + "+", operatorCount + 1);
-                generateExpressions(permutation, index + 1, currentExpression + currentChar + "-", operatorCount + 1);
-                generateExpressions(permutation, index + 1, currentExpression + currentChar + "*", operatorCount + 1);
-                generateExpressions(permutation, index + 1, currentExpression + currentChar + "/", operatorCount + 1);
+                generateExpressions(permutation, index + 1, currentExpression + currentChar + "+", operatorCount + 1,res);
+                generateExpressions(permutation, index + 1, currentExpression + currentChar + "-", operatorCount + 1,res);
+                generateExpressions(permutation, index + 1, currentExpression + currentChar + "*", operatorCount + 1,res);
+                generateExpressions(permutation, index + 1, currentExpression + currentChar + "/", operatorCount + 1,res);
             }
             // Continue without an operator
-            generateExpressions(permutation, index + 1, currentExpression + currentChar, operatorCount);
+            generateExpressions(permutation, index + 1, currentExpression + currentChar, operatorCount,res);
         }
     }
 
