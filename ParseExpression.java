@@ -1,5 +1,7 @@
 package fourEqualsTen;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Stack;
 
 public class ParseExpression {
@@ -58,6 +60,10 @@ public class ParseExpression {
     }
 
     private static float applyOperator(char operator, float b, float a) {
+        if (operator == '/' && b == 0) {
+            return -1;
+        }
+
         switch (operator) {
             case '+':
                 return a + b;
@@ -66,10 +72,25 @@ public class ParseExpression {
             case '*':
                 return a * b;
             case '/':
-                if (b == 0) throw new ArithmeticException("Division by zero");
                 return a / b;
         }
         return 0;
     }
+
+    public static List<String> evaluateExpressionResult(List<String> expressions)
+    {
+        List<String> res = new ArrayList<>();
+        for (String expr: expressions)
+        {
+            float f = evaluateExpression(expr);
+            if (f == 10)
+            {
+                res.add(expr);
+            }
+        }
+        return res;
+    }
+
+
 
 }

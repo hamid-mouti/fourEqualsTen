@@ -20,7 +20,7 @@ public class NumberPermutationGenerator {
         return validPermutations;
     }
 
-    private static boolean isValid(String permutation) {
+    public static boolean isValid(String permutation) {
         int openParenIndex = permutation.indexOf('(');
         int closeParenIndex = permutation.indexOf(')');
 
@@ -44,7 +44,7 @@ public class NumberPermutationGenerator {
     public static List<String> generatePermutations(String input) {
         List<String> result = new ArrayList<>();
         char[] chars = input.toCharArray();
-        Set<Character> numbers = new HashSet<>();
+        List<Character> numbers = new ArrayList<>();
         int openParenCount = 0;
         int closeParenCount = 0;
 
@@ -80,7 +80,7 @@ public class NumberPermutationGenerator {
         return result;
     }
 
-    private static void generatePermutationsHelper(char[] chars, int index, List<String> result) {
+    public static void generatePermutationsHelper(char[] chars, int index, List<String> result) {
         if (index == chars.length) {
             result.add(new String(chars));
             return;
@@ -92,7 +92,7 @@ public class NumberPermutationGenerator {
         }
     }
 
-    private static void swap(char[] chars, int i, int j) {
+    public static void swap(char[] chars, int i, int j) {
         char temp = chars[i];
         chars[i] = chars[j];
         chars[j] = temp;
