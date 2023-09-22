@@ -7,14 +7,6 @@ import java.util.Set;
 
 public class NumberPermutationGenerator {
 
-    public static void main(String[] args) {
-        String input = "1234()"; // Replace with your input
-        List<String> permutations = generateValidPermutations(input);
-        for (String permutation : permutations) {
-            System.out.println(permutation);
-        }
-    }
-
     public static List<String> generateValidPermutations(String input) {
         List<String> permutations = generatePermutations(input);
         List<String> validPermutations = new ArrayList<>();

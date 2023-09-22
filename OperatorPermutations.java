@@ -22,14 +22,6 @@ public class OperatorPermutations {
 
         return permutations;
     }
-
-    public static void main(String[] args) {
-        List<String> operatorPermutations = generateOperatorPermutations();
-
-        for (String permutation : operatorPermutations) {
-            System.out.println(permutation);
-        }
-    }
 }
 
 
